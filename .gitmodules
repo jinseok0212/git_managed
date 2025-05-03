@@ -1,0 +1,6 @@
+[submodule "data_structure"]
+	path = data_structure
+	url = https://github.com/jinseok0212/data_structure.git
+[submodule "myproject"]
+	path = myproject
+	url = https://github.com/jinseok0212/django.git
