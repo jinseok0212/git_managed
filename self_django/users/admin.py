@@ -12,6 +12,6 @@ class CustomUserAdmin(UserAdmin):
         ('추가정보', {'fields': ('nickname', 'age')}),
     )
     
-    list_display = ['username', 'email', 'nickname', 'age']
+    list_display = ['username', 'email', 'nickname', 'age'] # 보여줄 것들 
 
 admin.site.register(CustomUser, CustomUserAdmin)
