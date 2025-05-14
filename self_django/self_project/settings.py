@@ -57,7 +57,7 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ],
-}
+} # 회원가입이랑 로그인에는 필요없는데 세션관리 할꺼니까 미리 넣어놨었네
 
 
 ROOT_URLCONF = 'self_project.urls'
