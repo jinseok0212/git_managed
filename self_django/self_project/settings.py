@@ -37,7 +37,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'users', # 앱 등록 
 ]
+
+AUTH_USER_MODEL = 'users.CustomUser' #내가 사용할 모델 등록해야함 
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -48,6 +52,13 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ],
+} # 회원가입이랑 로그인에는 필요없는데 세션관리 할꺼니까 미리 넣어놨었네
+
 
 ROOT_URLCONF = 'self_project.urls'
 
