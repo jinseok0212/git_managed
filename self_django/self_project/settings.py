@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'users', # 앱 등록 
+    'users', # 회원가입, 로그인
+    'board', # 게시판 
 ]
 
 AUTH_USER_MODEL = 'users.CustomUser' #내가 사용할 모델 등록해야함 
