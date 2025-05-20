@@ -8,3 +8,4 @@ class CustomUser(AbstractUser): # AbstractUser를 상속해서 나머지는 기�
 
     def __self__(self):
         return self.username
+        
