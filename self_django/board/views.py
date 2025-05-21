@@ -1,11 +1,16 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Post
 from .forms import PostForm
-
+from django.core.paginator import Paginator
 
 def post_list(request): # read
-    posts = Post.objects.all().order_by('-created_at')
-    return render(request, 'board/post_list.html', {'posts' : posts})
+    post_list = Post.objects.all().order_by('-created_at')
+    paginator = Paginator(post_list, 5) 
+
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    return render(request, 'board/post_list.html', {'page_obj' : page_obj})
 
 def post_detail(request, pk): # deep read zz
     post = get_object_or_404(Post, pk = pk)
@@ -41,3 +46,6 @@ def post_delete(request, pk):
         return redirect('post_list') 
 
     return redirect('post_detail', pk=pk)
+
+
+
