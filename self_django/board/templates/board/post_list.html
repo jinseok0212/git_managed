@@ -33,3 +33,16 @@
     <li>작성된 게시글이 없습니다.</li>
   {% endfor %}
 </ul>
+
+
+<div>
+    {% if page_obj.has_previoud %}
+        <a href="?page={{ page_obj.has_previous_page_number }}">이전</a>
+    {% endif %}
+
+    <span>현재 페이지: {{ page_obj.number }} / {{ page_obj.paginator.num_pages }}</span>
+
+    {% if page_obj.has_next %}
+        <a href="?page{{ page_obj.has_next_page_number }}">다음</a>
+    {% endif %}
+</div>
