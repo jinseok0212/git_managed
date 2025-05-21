@@ -3,15 +3,15 @@ from .models import Post
 from .forms import PostForm
 
 
-def Post_list(request): # read
+def post_list(request): # read
     posts = Post.objects.all().order_by('-created_at')
     return render(request, 'board/post_list.html', {'posts' : posts})
 
-def Post_detail(request, pk): # deep read zz
+def post_detail(request, pk): # deep read zz
     post = get_object_or_404(Post, pk = pk)
     return render(request, 'board/post_detail.html', {'post' : post})
 
-def Post_create(request): # create 
+def post_create(request): # create 
     if request.method == 'POST':
         form = PostForm(request.POST)
         if form.is_valid():
@@ -22,7 +22,7 @@ def Post_create(request): # create
         form = PostForm()
     return render(request, 'board/post_form.html', {'form' : form})
 
-def Post_edit(request, pk):
+def post_edit(request, pk):
     post = get_object_or_404(Post, pk = pk)
     if request.method == 'POST':
         form = PostForm(request.POST, instance= post) # instance = post <- 기존 게시물을 수정하겠다는 의미
