@@ -21,4 +21,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('api.urls')),
     path('', include('users.urls')), # 본 프젝에 연결
+    path('posts/', include('board.urls')), 
 ]
