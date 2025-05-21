@@ -1,0 +1,58 @@
+<h1>게시글 목록</h1>
+
+<!-- 새 글 작성 버튼 -->
+<p>
+  <a href="{% url 'post_create' %}">+ 새 글 쓰기</a>
+</p>
+
+<hr>
+
+<!-- 게시글 리스트 출력 -->
+<ul>
+  {% for post in page_obj %}
+    <li>
+      <!-- 제목: 상세 페이지로 이동 -->
+      <a href="{% url 'post_detail' post.pk %}">{{ post.title }}</a>
+      <br>
+
+      <!-- 날짜 -->
+      <small>{{ post.created_at|date:"Y-m-d H:i" }}</small>
+      <br>
+
+      <!-- 수정 링크 -->
+      <a href="{% url 'post_edit' post.pk %}">[수정]</a>
+
+      <!-- 삭제: POST 방식으로 삭제 -->
+      <form action="{% url 'post_delete' post.pk %}" method="post" style="display:inline;">
+        {% csrf_token %}
+        <button type="submit">[삭제]</button>
+      </form>
+    </li>
+    <hr>
+  {% empty %}
+    <li>작성된 게시글이 없습니다.</li>
+  {% endfor %}
+</ul>
+
+
+<div>
+    {% if page_obj.has_previous %}
+        <a href="?page={{ page_obj.previous_page_number }}">이전</a>
+    {% endif %}
+
+    <span>현재 페이지: {{ page_obj.number }} / {{ page_obj.paginator.num_pages }}</span>
+
+    {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}">다음</a>
+    {% endif %}
+</div>
+
+<div>
+    {% for num in page_obj.paginator.page_range %}
+        {% if num == page_obj.number %}
+            <strong>{{ num }}</strong>
+        {% else %}
+            <a href="?page={{ num }}">{{ num }}</a>
+        {% endif %}
+    {% endfor %}
+</div>
