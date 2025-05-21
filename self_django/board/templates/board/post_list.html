@@ -9,7 +9,7 @@
 
 <!-- 게시글 리스트 출력 -->
 <ul>
-  {% for post in posts %}
+  {% for post in page_obj %}
     <li>
       <!-- 제목: 상세 페이지로 이동 -->
       <a href="{% url 'post_detail' post.pk %}">{{ post.title }}</a>
@@ -36,13 +36,23 @@
 
 
 <div>
-    {% if page_obj.has_previoud %}
-        <a href="?page={{ page_obj.has_previous_page_number }}">이전</a>
+    {% if page_obj.has_previous %}
+        <a href="?page={{ page_obj.previous_page_number }}">이전</a>
     {% endif %}
 
     <span>현재 페이지: {{ page_obj.number }} / {{ page_obj.paginator.num_pages }}</span>
 
     {% if page_obj.has_next %}
-        <a href="?page{{ page_obj.has_next_page_number }}">다음</a>
+        <a href="?page={{ page_obj.next_page_number }}">다음</a>
     {% endif %}
+</div>
+
+<div>
+    {% for num in page_obj.paginator.page_range %}
+        {% if num == page_obj.number %}
+            <strong>{{ num }}</strong>
+        {% else %}
+            <a href="?page={{ num }}">{{ num }}</a>
+        {% endif %}
+    {% endfor %}
 </div>
