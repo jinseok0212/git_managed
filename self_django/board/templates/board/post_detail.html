@@ -1,0 +1,20 @@
+<h1> {{ post.title }}</h1>
+
+<p>{{ post.content }}</p>
+
+<p>
+    <small>작성일 : {{ post.created_at|date:"Y-m-d H:i"}}</small>
+</p>
+
+<p>
+    <a href="{% url 'post_edit' post.pk %}">수정</a>
+</p>
+
+<form action="{% url 'post_delete' post.pk %}" method="post">
+    {% csrf_token %}
+    <button type="submit">삭제</button>
+</form>
+
+<p>
+    <a href="{% url 'post_list' %}"> 목록으로</a>
+</p>
